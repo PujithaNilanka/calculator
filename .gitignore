@@ -11,7 +11,8 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+# comment in order to push gradle-wrapper.jar 
+# *.jar
 *.war
 *.nar
 *.ear
