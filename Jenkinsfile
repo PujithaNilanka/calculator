@@ -42,7 +42,7 @@ pipeline {
         }
         stage("Docker build"){
             steps {
-                sh "docker build -t pujitha/calculator ."
+                sh "docker build -t pujitha/calculator . "
             }
         }
     }
