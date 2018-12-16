@@ -45,7 +45,7 @@ pipeline {
                 sh "docker build -t pujitha/calculator . "
             }
         }
-        stage("Deploy to staging" {
+        stage("Deploy to staging"){
             steps {
                 sh "docker run -d --rm -p 8765:8080 --name calculator pujitha/calculator"
             }
