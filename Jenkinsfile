@@ -72,7 +72,7 @@ pipeline {
             // Stop the docker-compose instances.
             // sh "docker-compose down"
             // Stop and remove docker-compose environment
-            sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -f acceptance down"
+            sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -p acceptance down"
         }
     }
 }
