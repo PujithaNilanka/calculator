@@ -52,7 +52,7 @@ pipeline {
                 sh "docker-compose up -d"
             }
         }
-        stage("Acceptance test - shell based"){
+        stage("Acceptance test - shell/docker-compose based"){
             steps {
                 // These 3 lines are for the script based acceptance tests replaced with docker compose tests
                 // sleep 60
@@ -63,7 +63,11 @@ pipeline {
                 sh 'test $(docker wait acceptance_test_1) -eq 0'
             }
         }
-
+        stage("Acceptance test - shell/docker-compose based"){
+             steps {
+                 sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8080"
+             }
+        }
     }
     post {
         always {
