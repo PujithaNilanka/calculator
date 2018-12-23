@@ -65,7 +65,7 @@ pipeline {
         }
         stage("Acceptance test - cucumber based"){
              steps {
-                 sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8080"
+                 sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:$(docker-compose port calculator 8080 | cut -d: -f2)"
              }
         }
     }
