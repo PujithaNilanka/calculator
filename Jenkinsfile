@@ -63,7 +63,9 @@ pipeline {
     }
     post {
         always {
-            sh "docker stop calculator"
+            // This is docker based service deployment. Subsequent line replaced this with docker-compose
+            // sh "docker stop calculator"
+            sh "docker-compose down"
         }
     }
 }
