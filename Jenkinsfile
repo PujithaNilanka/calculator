@@ -54,18 +54,25 @@ pipeline {
         }
         stage("Acceptance test - shell based"){
             steps {
-                sleep 60
-                sh "chmod +x ./acceptance_test.sh"
-                sh "./acceptance_test.sh"
+                // These 3 lines are for the script based acceptance tests replaced with docker compose tests
+                // sleep 60
+                // sh "chmod +x ./acceptance_test.sh"
+                // sh "./acceptance_test.sh"
+                sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml build test"
+                sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -p acceptance up -d"
+                sh 'test $(docker wait acceptance_test_1) -eq 0'
             }
         }
 
     }
     post {
         always {
-            // This is docker based service deployment. Subsequent line replaced this with docker-compose
+            // Stop the docker based service deployment.
             // sh "docker stop calculator"
-            sh "docker-compose down"
+            // Stop the docker-compose instances.
+            // sh "docker-compose down"
+            // Stop and remove docker-compose environment
+            sh "docker-compose -f docker-compose.yml -f acceptance/docker-compose-acceptance.yml -f acceptance down"
         }
     }
 }
