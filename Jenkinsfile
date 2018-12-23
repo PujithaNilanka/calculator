@@ -63,11 +63,12 @@ pipeline {
                 sh 'test $(docker wait acceptance_test_1) -eq 0'
             }
         }
-        stage("Acceptance test - shell/docker-compose based"){
+        stage("Acceptance test - cucumber based"){
              steps {
                  sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8080"
              }
         }
+    }
     post {
         always {
             // Stop the docker based service deployment.
