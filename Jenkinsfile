@@ -45,13 +45,14 @@ pipeline {
                 sh "docker build -t pujitha/calculator . "
             }
         }
-        stage("Deploy to staging"){
-            steps {
+        // This stage is replaced with Acceptance test stage now
+        // stage("Deploy to staging"){
+        //    steps {
                 // This is docker based service deployment. Subsequent line replaced this with docker-compose
                 // sh "docker run -d --rm -p 8765:8080 --name calculator pujitha/calculator"
-                sh "docker-compose up -d"
-            }
-        }
+        //        sh "docker-compose up -d"
+        //    }
+        //}
         stage("Acceptance test - shell/docker-compose based"){
             steps {
                 // These 3 lines are for the script based acceptance tests replaced with docker compose tests
