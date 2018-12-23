@@ -68,7 +68,6 @@ pipeline {
                  sh "./gradlew acceptanceTest -Dcalculator.url=http://localhost:8080"
              }
         }
-    }
     post {
         always {
             // Stop the docker based service deployment.
