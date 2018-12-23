@@ -47,16 +47,19 @@ pipeline {
         }
         stage("Deploy to staging"){
             steps {
-                sh "docker run -d --rm -p 8765:8080 --name calculator pujitha/calculator"
+                // This is docker based service deployment. Subsequent line replaced this with docker-compose
+                // sh "docker run -d --rm -p 8765:8080 --name calculator pujitha/calculator"
+                sh "docker-compose up -d"
             }
         }
-        stage("Acceptance test"){
+        stage("Acceptance test - shell based"){
             steps {
                 sleep 60
                 sh "chmod +x ./acceptance_test.sh"
                 sh "./acceptance_test.sh"
             }
         }
+
     }
     post {
         always {
